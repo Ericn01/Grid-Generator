@@ -1,4 +1,4 @@
-const colorSchemes = {
+export const colorSchemes = {
     earthyTones: {
         twoColors: ["#808000", "#c2b280"],
         threeColors: ["#808000", "#c2b280", "#b66a50"],

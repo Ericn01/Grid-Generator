@@ -3,54 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eric's Portofolio Website</title>
-    <script src="gridLogic.js"></script>
+    <title> Grid Generator </title>
+    <script type="module" src="gridLogic.js"></script>
+    <base href=".">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="grid.png">
 </head>
 <body>
-    <form id="gridForm">
-        <section class="gridDimensions">
-            <label for="rowVal"> Rows: </label>
-            <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5"><br> 
-            <label for="colVal"> Columns: </label>
-            <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">           
-        </section>
-        <section class="gridItemSize">
-            <section> 
-                <h3> Uniform Grid Item Size? </h3>
-                <label for="uniformSize"> Yes </label><br>
-                <input type="radio" id="uniformSize" name="uniformSize" value="yes">
-                <label for="notUniformSize"> No </label><br>
-                <input type="radio" id="notUniformSize" name="notUniformSize" value="no">
+    <main class="container">
+        <h1> Grid Generation Settings </h1>
+        <form id="gridForm">
+            <h3 class="formHeading"> Rows & Columns Selection</h3>
+            <section class="formSection gridDimensions"> 
+                <article class="numInput">             
+                    <label for="rowVal"> Rows: </label>
+                    <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5">
+                </article>  
+                <article class="numInput"> 
+                    <label for="colVal"> Columns: </label>
+                    <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">   
+                </article>        
             </section>
-            <label for="gridWidth"> Minimum Grid Item Width: </label>
-            <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5"><br> 
-            <label for="colVal"> Columns: </label>
-            <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">           
-        </section>
-        <section class="colorScheme">
-            <label for="colorScheme">Select a Color Scheme:</label>
-            <select id="colorScheme" name="colorScheme">
-                <option value="earthyTones">Earthy Tones</option>
-                <option value="pastelColors">Pastel Colors</option>
-                <option value="vibrantColors" selected>Vibrant Colors</option>
-                <option value="modernChic">Modern Chic</option>
-                <option value="sereneBlues">Serene Blues</option>
-                <option value="sunsetGlow">Sunset Glow</option>
-            </select>
-            <br><br>
-    
-            <label for="numColors">Number of Colors:</label>
-            <select id="numColors" name="numColors">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5" selected>5</option>
-            </select>
-        </section>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br>
-        <button type="submit">Submit</button>
-    </form>
+
+            <h3 class="formHeading"> Uniform Grid Item Size? </h3>
+            <section class="formSection gridItemSize">
+                <section class="gridItemSizing"> 
+                    <label for="uniformSize"> Yes </label>
+                    <input type="radio" id="uniformSize" name="uniformSize" value="yes">
+                    <label for="notUniformSize"> No </label>
+                    <input type="radio" id="notUniformSize" name="uniformSize" value="no">
+                </section>
+                <section class="minMaxDimensions">
+                    <article class="itemDimensions">
+                        <h4> Width Settings </h4>
+
+                        <div class="itemValue">
+                            <label for="minGridItemWidth"> Minimum Item Width </label>
+                            <span class="dimLimit maxWidth"> </span>
+                            <input type="range" min="50" max="100" id="minGridItemWidth" class="itemWidth" value="25">
+                        </div>
+                        <div class="itemValue">
+                            <label for="maxGridItemWidth"> Maximum Item Width </label>
+                            <span class="dimLimit low"> </span>
+                                <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="75">
+                        </div>
+                        <p class="dim width"> Width Range: </p>
+                    </article>
+                    <article class="itemDimensions">
+                        <h4> Height Settings </h4>
+                        <div class="itemValue"></div>
+                            <label for="minGridItemHeight"> Minimum Item Height </label>
+                            <input type="range" min="50" max="100" id="minGridItemHeight" class="itemHeight" value="25">
+                        </div>
+                        <div class="itemValue">
+                            <label for="maxGridItemWidth"> Maximum Item Height </label>
+                            <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75">
+                        </div>
+                        <p class="dim height"> Height Range: </p>
+                    </article>
+                </section>     
+            </section>
+            <h3 class="formHeading"> Color Scheme </h3>
+            <section class="formSection colorScheme">
+                <label for="colorScheme">Select a Color Scheme:</label>
+                <select id="colorScheme" name="colorScheme">
+                    <option value="earthyTones">Earthy Tones</option>
+                    <option value="pastelColors">Pastel Colors</option>
+                    <option value="vibrantColors" selected>Vibrant Colors</option>
+                    <option value="modernChic">Modern Chic</option>
+                    <option value="sereneBlues">Serene Blues</option>
+                    <option value="sunsetGlow">Sunset Glow</option>
+                </select>
+                <br><br>
+        
+                <label for="numColors">Number of Colors:</label>
+                <span> 1 </span>
+                <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors">
+                <span> 5 </span>
+            </section>
+
+            <h3 class="formHeading"> Miscellaneous Styling </h3>
+            <section class="formSection">
+                <article class="miscInput gap">             
+                    <label for="gridGap"> Grid Gap (px) </label>
+                    <input type="number" id="gripGap" name="gridGap" min="0" max="25" step="1" value="0">
+                </article>  
+                <article class="miscInput border">             
+                    <div class="borderSize">
+                        <label for="bSize"> Border Size (px) </label>
+                        <input type="number" id="bSize" name="bSize" min="0" max="5" step="1" value="0">
+                    </div>
+                    <div class="borderColor">
+                        <label for="bColor"> Border Color </label>
+                        <input type="color" name="bColor" id="bColor" value="#000000">
+                    </div>
+                </article>  
+            </section>
+            <button type="submit">Submit</button>
+        </form>
+    </main>
 </body>
 </html>
