@@ -35,4 +35,4 @@ export const colorSchemes = {
         fourColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e"],
         fiveColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e", "#ffb6b9"]
     }
-};
+}

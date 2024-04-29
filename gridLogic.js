@@ -1,5 +1,5 @@
-import { colorSchemes } from "./colorsSchemes";
-import { initForm } from "./formToggling";
+import  { colorSchemes } from "./colorsSchemes.js";
+import { initForm } from "./formToggling.js";
 /**
  * The goal of this project is to create a m x n grid (dimensions specified by user).
  * The main page will be a form asking for the user's inputs. These will include the following:
@@ -17,26 +17,25 @@ import { initForm } from "./formToggling";
 document.addEventListener('DOMContentLoaded', () => {
     /* Okay, now we think about the items we'll have to grab. 
     * Well obviously we need to use the form data, that's the first step.
-    * Another consideration is the relationship between grid dimensions, and the max size of each grid item
-    * 
+    * Another consideration is the relationship between grid dimensions, and the max size of each grid item.
     */
-    
+    // This function is called to add the dropdown menus and to get the hidden parts of the form working
     initForm();
 
     // Grabbing the dimensions HTML nodes (p)
     const [widthRange, heightRange] = document.querySelectorAll('.dim');
     // Adding an event listener to each item
-    const gridItemDimensions = document.querySelectorAll('.itemValue input')
-    // Setting up the default values 
-    setRangeString(widthRange, gridItemDimensions[0].value, gridItemDimensions)
+    const gridItemDimensions = document.querySelectorAll('.itemWidth, .itemHeight')
+    
+    // Range values initalized and displayed 
+    setDefaultRangeValues(widthRange, heightRange, gridItemDimensions);
+
     // Using a for loop to iterate over the NodeList and adding event listeners
     for (const input of gridItemDimensions){
         input.addEventListener('input', () => {
             // minWidth, maxWidth, minHeight, maxHeight
             const values = Array.from(gridItemDimensions).map(input => input.value);
-            console.log(values)
             const [minWidth, maxWidth, minHeight, maxHeight] = values;
-
             setRangeString(widthRange, 'Width Range: ', minWidth, maxWidth)
             setRangeString(heightRange, 'Height Range: ', minHeight, maxHeight)
         });
@@ -46,13 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Here we use the modern FormData object to retrieve form data
     document.getElementById('gridForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Prevent the default form submission
-    
+        
         const formData = new FormData(this); // 'this' refers to the form
-    
-        // Display the form data in the console for debugging
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
+
+        // Call the create grid function
+        createGrid(formData)
 
         // Grid template rows - m, grid template columns - n.
     
@@ -70,7 +67,7 @@ const checkMinLessThanMax = (min, max) => {
 }
 
 const setRangeString = (htmlNode, text, min, max) => {
-    htmlNode.textContent = `${text}: ${min}px - ${max}px`;
+    htmlNode.textContent = `${text} ${min}px - ${max}px`;
 }
 
 /** 
@@ -79,8 +76,60 @@ const setRangeString = (htmlNode, text, min, max) => {
 */
 
 const calculateMinAndMaxGridValues = (numRows, numColumns) => {
-
+    // to perform this calculation, we will need to know the window size 
 }
 
+// Setting these guys up
+const setDefaultRangeValues = (widthRange, heightRange, gridItemDimensions) => {
+    setRangeString(widthRange, 'Width Range: ', gridItemDimensions[0].value, gridItemDimensions[1].value)
+    setRangeString(heightRange, 'Height Range: ', gridItemDimensions[2].value, gridItemDimensions[3].value)
+}
 
-const generateGrids = (numRows, numColumns, minItemWidth, minItemHeight, minItemWidth, maxItemHeight, colorPalette, gridGap)
+const createGrid = (gridParams) => {
+        // Get the form values
+        const numRows = parseInt(document.getElementById('rowVal').value, 10);
+        const numCols = parseInt(document.getElementById('colVal').value, 10);
+        const minWidth = parseInt(document.getElementById('minGridItemWidth').value, 10);
+        const maxWidth = parseInt(document.getElementById('maxGridItemWidth').value, 10);
+        const minHeight = parseInt(document.getElementById('minGridItemHeight').value, 10);
+        const maxHeight = parseInt(document.getElementById('maxGridItemHeight').value, 10);
+        const colorSchemeName = document.getElementById('colorScheme').value;
+        const numColors = parseInt(document.getElementById('numColors').value, 10);
+        const gridGap = parseInt(document.getElementById('gridGap').value, 10);
+    
+        // Select the color scheme
+        const colors = colorSchemes[colorSchemeName][`fiveColors`].slice(0, numColors);
+    
+        // Create the grid container
+        const gridContainer = document.getElementById('gridContainer');
+        gridContainer.style.display = 'grid';
+        gridContainer.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
+        gridContainer.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
+        gridContainer.style.gap = `${gridGap}px`;
+    
+        // Clear previous items if any
+        gridContainer.innerHTML = '';
+    
+        // Create each grid item
+        for (let i = 0; i < numRows * numCols; i++) {
+            const gridItem = document.createElement('div');
+            const itemWidth = Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth;
+            const itemHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
+            const colorIndex = i % colors.length; // Cycle through colors
+    
+            // Style the grid item
+            gridItem.style.width = `${itemWidth}px`;
+            gridItem.style.height = `${itemHeight}px`;
+            gridItem.style.backgroundColor = colors[colorIndex];
+            gridItem.style.display = 'flex';
+            gridItem.style.justifyContent = 'center';
+            gridItem.style.alignItems = 'center';
+    
+            // Optionally, add text or content here
+            gridItem.textContent = `Item ${i + 1}`;
+    
+            // Append the item to the grid
+            gridContainer.appendChild(gridItem);
+    }
+}
+
