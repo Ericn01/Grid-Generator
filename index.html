@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric's Portofolio Website</title>
+    <script src="gridLogic.js"></script>
+</head>
+<body>
+    <form id="gridForm">
+        <section class="gridDimensions">
+            <label for="rowVal"> Rows: </label>
+            <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5"><br> 
+            <label for="colVal"> Columns: </label>
+            <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">           
+        </section>
+        <section class="gridItemSize">
+            <section> 
+                <h3> Uniform Grid Item Size? </h3>
+                <label for="uniformSize"> Yes </label><br>
+                <input type="radio" id="uniformSize" name="uniformSize" value="yes">
+                <label for="notUniformSize"> No </label><br>
+                <input type="radio" id="notUniformSize" name="notUniformSize" value="no">
+            </section>
+            <label for="gridWidth"> Minimum Grid Item Width: </label>
+            <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5"><br> 
+            <label for="colVal"> Columns: </label>
+            <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">           
+        </section>
+        <section class="colorScheme">
+            <label for="colorScheme">Select a Color Scheme:</label>
+            <select id="colorScheme" name="colorScheme">
+                <option value="earthyTones">Earthy Tones</option>
+                <option value="pastelColors">Pastel Colors</option>
+                <option value="vibrantColors" selected>Vibrant Colors</option>
+                <option value="modernChic">Modern Chic</option>
+                <option value="sereneBlues">Serene Blues</option>
+                <option value="sunsetGlow">Sunset Glow</option>
+            </select>
+            <br><br>
+    
+            <label for="numColors">Number of Colors:</label>
+            <select id="numColors" name="numColors">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5" selected>5</option>
+            </select>
+        </section>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
