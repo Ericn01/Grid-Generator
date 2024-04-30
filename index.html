@@ -17,11 +17,11 @@
             <section class="formSection gridDimensions"> 
                 <article class="numInput">             
                     <label for="rowVal"> Rows: </label>
-                    <input type="number" id="rowVal" name="rowVal" min="0" max="50" step="1" value="5">
+                    <input type="number" id="rowVal" name="rowVal" min="1" max="25" step="1" value="5">
                 </article>  
                 <article class="numInput"> 
                     <label for="colVal"> Columns: </label>
-                    <input type="number" id="colVal" name="colVal" min="0" max="50" step="1" value="5">   
+                    <input type="number" id="colVal" name="colVal" min="1" max="25" step="1" value="5">   
                 </article>        
             </section>
 
@@ -33,8 +33,23 @@
                     <label for="notUniformSize"> No </label>
                     <input type="radio" id="notUniformSize" name="uniformSize" value="no">
                 </section>
-                <section class="minMaxDimensions">
-                    <article class="itemDimensions">
+                <section class="equalDimensions">
+                    <h4> Width Settings </h4>
+                    <div class="itemValue">
+                        <label for="gridItemWidth"> Grid Item Width </label>
+                        <span class="width"> </span>
+                        <input type="range" min="10" max="50" id="gridItemWidth" class="itemWidth" value="25" name="gridItemWidth">
+                    </div>
+                    <h4> Height Settings </h4>
+                    <div class="itemValue">
+                        <label for="gridItemHeight"> Grid Item Height </label>
+                        <span class="dimLimit maxHeight"> </span>
+                        <input type="range" min="1" max="50" id="gridItemHeight" class="itemHeight" value="25" name="gridItemHeight">
+                    </div>
+                    <p class="dim widthAndHeight"> Grid Item Dimensions: </p>
+                </section>
+                <section class="minMaxDimensions ">
+                    <article class="itemDimensions widthRange">
                         <h4> Width Settings </h4>
                         <div class="itemValue">
                             <label for="minGridItemWidth"> Min Item Width </label>
@@ -73,6 +88,8 @@
                         <option value="modernChic">Modern Chic</option>
                         <option value="sereneBlues">Serene Blues</option>
                         <option value="sunsetGlow">Sunset Glow</option>
+                        <option value="tropicalSunset">Tropical Sunset</option>
+                        <option value="forestRetreat">Forest Retreat </option>
                     </select>
                 </article>
                 <article class="colorSelection">
@@ -80,7 +97,7 @@
                     <div class="numColorsRange">
                         <span id="minColors"> 1 </span>
                         <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors" name="numColors">
-                        <span id="maxColors"> 5 </span>
+                        <span id="maxColors"> 7 </span>
                     </div>
                 </article>
             </section>
@@ -102,6 +119,13 @@
                         <span class="colorHex"> </span>
                     </div>
                 </article>  
+                <article class="boxShadow">
+                    <h4> Add Box Shadow? </h4>
+                    <label for="addBoxShadow"> Yes </label>
+                    <input type="radio" id="addShadow" name="addBoxShadow" value="yes">
+                    <label for="addBoxShadow"> No </label>
+                    <input type="radio" id="noShadow" name="addBoxShadow" value="no" checked>
+                </article>
             </section> 
         
             <button type="submit" id="submitGridFormBtn"> Submit </button>

@@ -2,17 +2,19 @@
 const toggleMinMaxDimensions = () => {
     const uniformSizeInputs = document.querySelectorAll('input[name="uniformSize"]');
     const minMaxDimensions = document.querySelector('.minMaxDimensions');
+    const equalDimensions = document.querySelector('.equalDimensions');
     const gridSizeTypeSelection = document.querySelector('#notUniformSize')
     // Check #1 upon page load
     minMaxDimensions.style.display = 'none';
+    equalDimensions.style.display = 'flex';
     // Add an event listener to each input
     uniformSizeInputs.forEach(input => {
         input.addEventListener('input', () => {
             if (gridSizeTypeSelection.checked) {
-                minMaxDimensions.style.transition = 'all 0.5s';
+                equalDimensions.style.display = 'none'
                 minMaxDimensions.style.display = 'block'; // Show if 'No' is selected
             } else {
-                minMaxDimensions.style.transition = '0.3s ease-in';
+                equalDimensions.style.display = 'flex'
                 minMaxDimensions.style.display = 'none'; // Hide otherwise
             }
         });
