@@ -39,6 +39,14 @@ const colorSchemes = {
         sixColors: ["#003b46", "#07575b", "#66a5ad", "#c4dfdd", "#d9eeee", "#191970"],
         sevenColors: ["#003b46", "#07575b", "#66a5ad", "#c4dfdd", "#d9eeee", "#191970", "#00FFFF"]
     },
+    sunsetGlow: {
+        twoColors: ["#ff9e2c", "#ff6126"],
+        threeColors: ["#ff9e2c", "#ff6126", "#d9514e"],
+        fourColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e"],
+        fiveColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e", "#ffb6b9"],
+        sixColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e", "#ffb6b9", "#a42642"], 
+        sevenColors: ["#ff9e2c", "#ff6126", "#d9514e", "#fbdd7e", "#ffb6b9", "#a42642", "#d34747"]
+    },
     tropicalSunset: {
         twoColors: ["#FF7F50", "#FFD700"],
         threeColors: ["#FF7F50", "#FFD700", "#8B008B"],

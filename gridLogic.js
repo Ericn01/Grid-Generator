@@ -21,6 +21,7 @@ let borderWidth = 0;
 document.addEventListener('DOMContentLoaded', () => {
     initForm();
     setupFormListeners();
+    updateGlobalVariables(document.querySelectorAll('.itemWidth, .itemHeight')); // Initial call to set dimensions
 });
 
 function setupFormListeners() {
@@ -37,15 +38,22 @@ function setupFormListeners() {
 }
 
 function updateGlobalVariables (dims) {
-    numRows = parseInt(document.querySelector("#rowVal").value);
-    numCols = parseInt(document.querySelector('#colVal').value);
-    gridGap = parseInt(document.querySelector('#gridGap').value);
-    borderWidth = parseInt(document.querySelector("#bSize").value);
-    setMaxDimensions(dims)
+    numRows = parseInt(document.querySelector("#rowVal").value) || 5; // Default to 5 if not set
+    numCols = parseInt(document.querySelector('#colVal').value) || 5; // Default to 5 if not set
+    gridGap = parseInt(document.querySelector('#gridGap').value) || 10; // Default to 10 if not set
+    borderWidth = parseInt(document.querySelector("#bSize").value) || 1; // Default to 1 if not set
+
+    setMaxDimensions(dims);
 }
 
 function setMaxDimensions(gridItemDimensions) {
     const maxDimensions = calculateMaxGridItemDimensions();
+    // Update the corresponding HTML text dynamically
+    const maxWidthItems = document.querySelectorAll('.maxWidth');
+    const maxHeightItems = document.querySelectorAll('.maxHeight');
+    const boundaryWidthItems = document.querySelectorAll('.boundaryWidth');
+    const boundaryHeightItems = document.querySelectorAll('.boundaryWidth');
+
     gridItemDimensions.forEach((elem) => {
         const id = elem.id;
         if (id.includes('Height')) {
@@ -53,9 +61,11 @@ function setMaxDimensions(gridItemDimensions) {
             const minMaxHeightBoundary =  Math.ceil(maxItemHeight / 2)
             if (id.includes('min')){ // minimum case
                 elem.max = minMaxHeightBoundary;
+                boundaryHeightItems.forEach (item => item.textContent = minMaxHeightBoundary + "px");
             } else{ // maximum case (same as the case for uniform grid items)
                 elem.max = maxItemHeight;
-                elem.min = Math.ceil(maxItemHeight / 2);
+                elem.min = minMaxHeightBoundary;
+                maxHeightItems.forEach (item => item.textContent = maxItemHeight + "px");
             }
         }
         if (id.includes('Width')) {
@@ -63,12 +73,18 @@ function setMaxDimensions(gridItemDimensions) {
             const minMaxWidthBoundary =  Math.ceil(maxItemWidth / 2)
             if (id.includes('min')){ // minimum case
                 elem.max = minMaxWidthBoundary
+                boundaryWidthItems.forEach ( (item) => {
+                    item.textContent = minMaxWidthBoundary + "px";
+                })
             } else{ // maximum case (same as the case for uniform grid items)
                 elem.max = maxItemWidth;
                 elem.min = minMaxWidthBoundary;
+                maxWidthItems.forEach (item => item.textContent = maxItemWidth + "px");
             }
         }
     });
+
+
 }
 
 function addDimensionInputListeners(elements) {
@@ -79,7 +95,7 @@ function addDimensionInputListeners(elements) {
 
 function updateRangeDisplays(elements) {
     const [uniformWidth, uniformHeight, minWidth, maxWidth, minHeight, maxHeight] = Array.from(elements).map(element => element.value);
-    const uniformDimensionsRange = `Grid Item Dimensions: ${uniformWidth} x ${uniformHeight}`;
+    const uniformDimensionsRange = `Grid Item Dimensions: ${uniformWidth}px x ${uniformHeight}px`;
     document.querySelector('.widthAndHeight').textContent = uniformDimensionsRange;
     setRangeString(document.querySelector('.dim.width'), 'Width Range: ', minWidth, maxWidth);
     setRangeString(document.querySelector('.dim.height'), 'Height Range: ', minHeight, maxHeight);
@@ -123,23 +139,30 @@ function setupGridContainer(rows, cols, gap) {
 }
 
 function createGridItem(index, formData, colors) {
-    const minWidth = parseInt(formData.get('minGridItemWidth'));
-    const maxWidth = parseInt(formData.get('maxGridItemWidth'));
-    const minHeight = parseInt(formData.get('minGridItemHeight'));
-    const maxHeight = parseInt(formData.get('maxGridItemHeight'));
-    // Return dimensions within the given range
-    const itemWidth = getRandomDimension(minWidth, maxWidth);
-    const itemHeight = getRandomDimension(minHeight, maxHeight);
+    const isUniformSize = formData.get('uniformSize');
+    console.log(isUniformSize)
+    let itemWidth = parseInt(formData.get('gridItemWidth'));
+    let itemHeight = parseInt(formData.get('gridItemHeight'));
+
+    if (isUniformSize === 'no'){
+        const minWidth = parseInt(formData.get('minGridItemWidth'));
+        const maxWidth = parseInt(formData.get('maxGridItemWidth'));
+        const minHeight = parseInt(formData.get('minGridItemHeight'));
+        const maxHeight = parseInt(formData.get('maxGridItemHeight'));
+        // Return dimensions within the given range
+        itemWidth = getRandomDimension(minWidth, maxWidth);
+        itemHeight = getRandomDimension(minHeight, maxHeight);
+    }
     const colorIndex = index % colors.length;
     // Box shadow logic
-    const boxShadowCSS = '1px 1px 5px black'
-
-    const item = document.createElement('div');
-    item.style.cssText = `width: ${itemWidth}px; height: ${itemHeight}px; background-color: ${colors[colorIndex]}; display: flex; justify-content: center; 
+    const boxShadowCSS = '1px 1px 5px black';
+    // Create the grid item
+    const gridItem = document.createElement('div');
+    gridItem.style.cssText = `width: ${itemWidth}px; height: ${itemHeight}px; background-color: ${colors[colorIndex]}; display: flex; justify-content: center; 
                           align-items: center; border: ${formData.get('bSize')}px solid ${formData.get('bColor')};
                           box-shadow: ${formData.get('addBoxShadow') === 'yes' ? boxShadowCSS : 'none'};`;
-    item.textContent = `Item ${index + 1}`;
-    return item;
+    gridItem.textContent = `Item ${index + 1}`;
+    return gridItem;
 }
 
 function getRandomDimension(min, max) {

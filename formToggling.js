@@ -6,7 +6,7 @@ const toggleMinMaxDimensions = () => {
     const gridSizeTypeSelection = document.querySelector('#notUniformSize')
     // Check #1 upon page load
     minMaxDimensions.style.display = 'none';
-    equalDimensions.style.display = 'flex';
+    equalDimensions.style.display = 'block';
     // Add an event listener to each input
     uniformSizeInputs.forEach(input => {
         input.addEventListener('input', () => {
@@ -14,7 +14,7 @@ const toggleMinMaxDimensions = () => {
                 equalDimensions.style.display = 'none'
                 minMaxDimensions.style.display = 'block'; // Show if 'No' is selected
             } else {
-                equalDimensions.style.display = 'flex'
+                equalDimensions.style.display = 'block'
                 minMaxDimensions.style.display = 'none'; // Hide otherwise
             }
         });

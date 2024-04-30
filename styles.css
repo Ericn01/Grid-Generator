@@ -7,8 +7,8 @@ body {
 }
 
 #gridForm{
-    max-width: 80%;
-    min-width: 80%;
+    max-width: 85%;
+    min-width: 82.5%;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     padding: 25px;
     border-radius: 7.5px;
@@ -158,11 +158,58 @@ button:hover {
     margin-left: 15px;
 }
 
-.equalDimensions{
-    display: block;
+.equalDimensions article{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
 }
 
 .widthRange{
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
+}
+
+.gridItemSizing{
+    margin-bottom: 8.5px;
+}
+
+.itemValue.uniform{
+    padding: 12px;
+    border-radius: 3.5px;
+    box-shadow:1px 1px 5px rgba(0,0,0,0.05);
+    margin: 5px;
+}
+
+.equalDimContainer h4 {
+   text-align: center;
+   color: #333;
+   font-size: 16px;
+   margin-bottom: 10px;
+}
+
+.equalDimContainer{
+    width: 75%;
+}
+
+/* Styling for the min and max labels on either side of the sliders */
+.minWidth, .maxWidth, .minHeight, .maxHeight, .boundaryWidth, .boundaryHeight {
+    text-align: center;
+}
+
+.dim {
+    font-size: 15px;
+    font-style: italic;
+    color: #666;
+    text-align: center;
+    margin-top: 15px;
+}
+
+input[type='range']{
+    max-width: 120px;
+}
+
+.flexSlider{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
