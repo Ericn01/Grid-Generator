@@ -29,7 +29,7 @@
             <section class="formSection gridItemSize">
                 <section class="gridItemSizing"> 
                     <label for="uniformSize"> Yes </label>
-                    <input type="radio" id="uniformSize" name="uniformSize" value="yes" default>
+                    <input type="radio" id="uniformSize" name="uniformSize" value="yes" checked>
                     <label for="notUniformSize"> No </label>
                     <input type="radio" id="notUniformSize" name="uniformSize" value="no">
                 </section>
@@ -37,12 +37,12 @@
                     <article class="itemDimensions">
                         <h4> Width Settings </h4>
                         <div class="itemValue">
-                            <label for="minGridItemWidth"> Minimum Item Width </label>
+                            <label for="minGridItemWidth"> Min Item Width </label>
                             <span class="dimLimit maxWidth"> </span>
                             <input type="range" min="50" max="100" id="minGridItemWidth" class="itemWidth" value="75">
                         </div>
                         <div class="itemValue">
-                            <label for="maxGridItemWidth"> Maximum Item Width </label>
+                            <label for="maxGridItemWidth"> Max Item Width </label>
                             <span class="dimLimit low"> </span>
                             <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="85">
                         </div>
@@ -51,11 +51,11 @@
                     <article class="itemDimensions">
                         <h4> Height Settings </h4>
                         <div class="itemValue">
-                            <label for="minGridItemHeight"> Minimum Item Height </label>
+                            <label for="minGridItemHeight"> Min Item Height </label>
                             <input type="range" min="30" max="100" id="minGridItemHeight" class="itemHeight" value="50">
                         </div>
                         <div class="itemValue">
-                            <label for="maxGridItemHeight"> Maximum Item Height </label>
+                            <label for="maxGridItemHeight"> Max Item Height </label>
                             <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75">
                         </div>
                         <p class="dim height"> <em> Height Range: </em> </p>
@@ -64,8 +64,8 @@
             </section>
             <h3 class="formHeading"> Color Scheme </h3>
             <section class="formSection colorScheme">
-                <article>
-                <label for="colorScheme">Select a Color Scheme:</label>
+                <article article="paletteSelection">
+                    <label for="colorScheme">Select a Color Scheme:</label>
                     <select id="colorScheme" name="colorScheme">
                         <option value="earthyTones">Earthy Tones</option>
                         <option value="pastelColors">Pastel Colors</option>
@@ -75,7 +75,7 @@
                         <option value="sunsetGlow">Sunset Glow</option>
                     </select>
                 </article>
-                <article>
+                <article class="colorSelection">
                     <label for="numColors">Number of Colors:</label>
                     <span> 1 </span>
                     <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors">
@@ -87,21 +87,26 @@
             <section class="formSection miscStyling">
                 <article class="numInput gap">             
                     <label for="gridGap"> Grid Gap (px): </label>
-                    <input type="number" id="gripGap" name="gridGap" min="0" max="25" step="1" value="2">
+                    <input type="number" id="gridGap" name="gridGap" min="0" max="25" step="1" value="10">
                 </article>  
                 <article class="numInput border">             
                     <div class="borderSize">
                         <label for="bSize"> Border Size (px): </label>
-                        <input type="number" id="bSize" name="bSize" min="0" max="5" step="1" value="0">
+                        <input type="number" id="bSize" name="bSize" min="0" max="5" step="1" value="1">
                     </div>
                     <div class="borderColor">
                         <label for="bColor"> Border Color: </label>
                         <input type="color" name="bColor" id="bColor" value="#000000">
+                        <span class="colorHex"> </span>
                     </div>
                 </article>  
-            </section>
-            <button type="submit">Submit</button>
+            </section> 
+        
+            <button type="submit" id="submitGridFormBtn"> Submit </button>
         </form>
     </main>
+    <section class="gridContainer">
+        
+    </section>
 </body>
 </html>

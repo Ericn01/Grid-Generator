@@ -1,4 +1,4 @@
-import  { colorSchemes } from "./colorsSchemes.js";
+import  { colorSchemes, colorMapping } from "./colorsSchemes.js";
 import { initForm } from "./formToggling.js";
 /**
  * The goal of this project is to create a m x n grid (dimensions specified by user).
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // Here we use the modern FormData object to retrieve form data
-    document.getElementById('gridForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+    document.querySelector('#submitGridFormBtn').addEventListener('submit', (e) => {
+        e.preventDefault(); // Prevent the default form submission
         
         const formData = new FormData(this); // 'this' refers to the form
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createGrid(formData)
 
         // Grid template rows - m, grid template columns - n.
-    
+        
     });
     
 });
@@ -79,29 +79,37 @@ const calculateMinAndMaxGridValues = (numRows, numColumns) => {
     // to perform this calculation, we will need to know the window size 
 }
 
+
 // Setting these guys up
 const setDefaultRangeValues = (widthRange, heightRange, gridItemDimensions) => {
     setRangeString(widthRange, 'Width Range: ', gridItemDimensions[0].value, gridItemDimensions[1].value)
     setRangeString(heightRange, 'Height Range: ', gridItemDimensions[2].value, gridItemDimensions[3].value)
 }
 
+
+
 const createGrid = (gridParams) => {
         // Get the form values
-        const numRows = parseInt(document.getElementById('rowVal').value, 10);
-        const numCols = parseInt(document.getElementById('colVal').value, 10);
-        const minWidth = parseInt(document.getElementById('minGridItemWidth').value, 10);
-        const maxWidth = parseInt(document.getElementById('maxGridItemWidth').value, 10);
-        const minHeight = parseInt(document.getElementById('minGridItemHeight').value, 10);
-        const maxHeight = parseInt(document.getElementById('maxGridItemHeight').value, 10);
-        const colorSchemeName = document.getElementById('colorScheme').value;
-        const numColors = parseInt(document.getElementById('numColors').value, 10);
-        const gridGap = parseInt(document.getElementById('gridGap').value, 10);
-    
+        const numRows = parseInt(document.querySelector('#rowVal').value);
+        const numCols = parseInt(document.querySelector('#colVal').value);
+        const minWidth = parseInt(document.querySelector('#minGridItemWidth').value);
+        const maxWidth = parseInt(document.querySelector('#maxGridItemWidth').value);
+        const minHeight = parseInt(document.querySelector('#minGridItemHeight').value);
+        const maxHeight = parseInt(document.querySelector('#maxGridItemHeight').value);
+        const colorSchemeName = document.querySelector('#colorScheme').value;
+        const numColors = parseInt(document.querySelector('#numColors').value);
+        const gridGap = parseInt(document.querySelector('#gridGap').value);
+        const borderSize = parseInt(document.querySelector('#bSize').value);
+        const borderColor = document.querySelector('#bColor').value;
+        
         // Select the color scheme
-        const colors = colorSchemes[colorSchemeName][`fiveColors`].slice(0, numColors);
-    
+        const colors = colorSchemes[colorSchemeName][colorMapping[numColors]];
+
+        // Hide the form 
+        document.querySelector('.container').style.display = 'none';
+
         // Create the grid container
-        const gridContainer = document.getElementById('gridContainer');
+        const gridContainer = document.querySelector('.gridContainer');
         gridContainer.style.display = 'grid';
         gridContainer.style.gridTemplateRows = `repeat(${numRows}, 1fr)`;
         gridContainer.style.gridTemplateColumns = `repeat(${numCols}, 1fr)`;
@@ -116,7 +124,7 @@ const createGrid = (gridParams) => {
             const itemWidth = Math.floor(Math.random() * (maxWidth - minWidth + 1)) + minWidth;
             const itemHeight = Math.floor(Math.random() * (maxHeight - minHeight + 1)) + minHeight;
             const colorIndex = i % colors.length; // Cycle through colors
-    
+            
             // Style the grid item
             gridItem.style.width = `${itemWidth}px`;
             gridItem.style.height = `${itemHeight}px`;
@@ -124,7 +132,9 @@ const createGrid = (gridParams) => {
             gridItem.style.display = 'flex';
             gridItem.style.justifyContent = 'center';
             gridItem.style.alignItems = 'center';
-    
+            gridItem.style.border = borderColor;
+            gridItem.style.borderWidth = borderSize;
+            
             // Optionally, add text or content here
             gridItem.textContent = `Item ${i + 1}`;
     
