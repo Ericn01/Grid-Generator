@@ -29,7 +29,7 @@
             <section class="formSection gridItemSize">
                 <section class="gridItemSizing"> 
                     <label for="uniformSize"> Yes </label>
-                    <input type="radio" id="uniformSize" name="uniformSize" value="yes" checked>
+                    <input type="radio" id="uniformSize" name="uniformSize" value="yes">
                     <label for="notUniformSize"> No </label>
                     <input type="radio" id="notUniformSize" name="uniformSize" value="no">
                 </section>
@@ -39,12 +39,12 @@
                         <div class="itemValue">
                             <label for="minGridItemWidth"> Min Item Width </label>
                             <span class="dimLimit maxWidth"> </span>
-                            <input type="range" min="50" max="100" id="minGridItemWidth" class="itemWidth" value="75">
+                            <input type="range" min="50" max="100" id="minGridItemWidth" class="itemWidth" value="75" name="minGridItemWidth">
                         </div>
                         <div class="itemValue">
                             <label for="maxGridItemWidth"> Max Item Width </label>
                             <span class="dimLimit low"> </span>
-                            <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="85">
+                            <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="85" name="maxGridItemWidth">
                         </div>
                         <p class="dim width"> <em> Width Range: </em> </p>
                     </article>
@@ -52,11 +52,11 @@
                         <h4> Height Settings </h4>
                         <div class="itemValue">
                             <label for="minGridItemHeight"> Min Item Height </label>
-                            <input type="range" min="30" max="100" id="minGridItemHeight" class="itemHeight" value="50">
+                            <input type="range" min="30" max="100" id="minGridItemHeight" class="itemHeight" value="50" name="minGridItemHeight">
                         </div>
                         <div class="itemValue">
                             <label for="maxGridItemHeight"> Max Item Height </label>
-                            <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75">
+                            <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75" name="maxGridItemHeight">
                         </div>
                         <p class="dim height"> <em> Height Range: </em> </p>
                     </article>
@@ -77,9 +77,11 @@
                 </article>
                 <article class="colorSelection">
                     <label for="numColors">Number of Colors:</label>
-                    <span> 1 </span>
-                    <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors">
-                    <span> 5 </span>
+                    <div class="numColorsRange">
+                        <span id="minColors"> 1 </span>
+                        <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors" name="numColors">
+                        <span id="maxColors"> 5 </span>
+                    </div>
                 </article>
             </section>
 
