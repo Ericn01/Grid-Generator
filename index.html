@@ -10,8 +10,8 @@
     <link rel="icon" type="image/x-icon" href="grid.png">
 </head>
 <body>
-    <main class="container">
-        <h1> Grid Generation Settings </h1>
+    <main class="formContainer">
+        <h1> CSS Grid Generation Settings </h1>
         <form id="gridForm">
             <h3 class="formHeading"> Rows & Columns Selection</h3>
             <section class="formSection gridDimensions"> 
@@ -29,7 +29,7 @@
             <section class="formSection gridItemSize">
                 <section class="gridItemSizing"> 
                     <label for="uniformSize"> Yes </label>
-                    <input type="radio" id="uniformSize" name="uniformSize" value="yes">
+                    <input type="radio" id="uniformSize" name="uniformSize" value="yes" checked>
                     <label for="notUniformSize"> No </label>
                     <input type="radio" id="notUniformSize" name="uniformSize" value="no">
                 </section>
@@ -40,9 +40,9 @@
                             <div class="itemValue uniform">
                                 <label for="gridItemWidth">Grid Item Width</label>
                                 <div class="flexSlider">
-                                    <span class="minWidth">10px</span>
+                                    <span class="sliderVal minWidth">10px</span>
                                     <input type="range" min="10" max="50" id="gridItemWidth" class="itemWidth" value="25" name="gridItemWidth">
-                                    <span class="maxWidth">50px</span>
+                                    <span class="sliderVal maxWidth">50px</span>
                                 </div>
                             </div>
                         </div>
@@ -51,9 +51,9 @@
                             <div class="itemValue uniform">
                                 <label for="gridItemHeight">Grid Item Height</label>
                                 <div class="flexSlider">
-                                    <span class="minHeight">1px</span>
+                                    <span class="sliderVal minHeight">1px</span>
                                     <input type="range" min="1" max="50" id="gridItemHeight" class="itemHeight" value="25" name="gridItemHeight">
-                                    <span class="maxHeight">50px</span>
+                                    <span class="sliderVal maxHeight">50px</span>
                                 </div>
                             </div>
                         </div>
@@ -61,42 +61,46 @@
                     <p class="dim widthAndHeight">Grid Item Dimensions: 25px x 25px</p>
                 </section>
                 <section class="minMaxDimensions">
-                    <article class="itemDimensions widthRange">
+                    <article class="itemDimensions">
                         <h4>Width Settings</h4>
-                        <div class="itemValue">
-                            <label for="minGridItemWidth">Min Width</label>
-                            <div class="flexSlider">
-                                <span class="minWidth">15px</span>
-                                <input type="range" min="15" max="100" id="minGridItemWidth" class="itemWidth" value="75" name="minGridItemWidth">
-                                <span class="boundaryWidth">100px</span>
+                        <div class="range widthRange">
+                            <div class="itemValue">
+                                <label for="minGridItemWidth">Min Width</label>
+                                <div class="flexSlider">
+                                    <span class="sliderVal minWidth">15px</span>
+                                    <input type="range" min="15" max="100" id="minGridItemWidth" class="itemWidth" value="75" name="minGridItemWidth">
+                                    <span class="sliderVal boundaryWidth">100px</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="itemValue">
-                            <label for="maxGridItemWidth">Max Width</label>
-                            <div class="flexSlider">
-                                <span class="boundaryWidth">50px</span>
-                                <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="85" name="maxGridItemWidth">
-                                <span class="maxWidth">85px</span>
+                            <div class="itemValue">
+                                <label for="maxGridItemWidth">Max Width</label>
+                                <div class="flexSlider">
+                                    <span class="sliderVal boundaryWidth">50px</span>
+                                    <input type="range" min="50" max="100" id="maxGridItemWidth" class="itemWidth" value="85" name="maxGridItemWidth">
+                                    <span class="sliderVal maxWidth">85px</span>
+                                </div>
                             </div>
                         </div>
                         <p class="dim width">Width Range: 75px - 85px</p>
                     </article>
                     <article class="itemDimensions">
                         <h4>Height Settings</h4>
-                        <div class="itemValue">
-                            <label for="minGridItemHeight">Min Height</label>
-                            <div class="flexSlider">
-                                <span class="minHeight">25px</span>
-                                <input type="range" min="1" max="50" id="minGridItemHeight" class="itemHeight" value="25" name="minGridItemHeight">
-                                <span class="boundaryHeight">25px</span>
+                        <div class="range heightRange">
+                            <div class="itemValue">
+                                <label for="minGridItemHeight">Min Height</label>
+                                <div class="flexSlider">
+                                    <span class="sliderVal minHeight">25px</span>
+                                    <input type="range" min="1" max="50" id="minGridItemHeight" class="itemHeight" value="25" name="minGridItemHeight">
+                                    <span class="sliderVal boundaryHeight">25px</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="itemValue">
-                            <label for="maxGridItemHeight">Max Height</label>
-                            <div class="flexSlider">
-                                <span class="boundaryHeight">50px</span>
-                                <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75" name="maxGridItemHeight">
-                                <span class="maxHeight">75px</span>
+                            <div class="itemValue">
+                                <label for="maxGridItemHeight">Max Height</label>
+                                <div class="flexSlider">
+                                    <span class="sliderVal boundaryHeight">50px</span>
+                                    <input type="range" min="50" max="100" id="maxGridItemHeight" class="itemHeight" value="75" name="maxGridItemHeight">
+                                    <span class="sliderVal maxHeight">75px</span>
+                                </div>
                             </div>
                         </div>
                         <p class="dim height">Height Range: 25px - 75px</p>
@@ -116,29 +120,44 @@
                         <option value="sunsetGlow">Sunset Glow</option>
                         <option value="tropicalSunset">Tropical Sunset</option>
                         <option value="forestRetreat">Forest Retreat </option>
+                        <option value="icyCool">Icy Cool</option>
+                        <option value="fieryReds">Fiery Reds</option>
+                        <option value="soothingGreens">Soothing Greens</option>
+                        <option value="royalGolds">Royal Golds </option>
+                        <option value="oceanicDepths"> Oceanic Depths </option>
                     </select>
                 </article>
                 <article class="colorSelection">
                     <label for="numColors">Number of Colors:</label>
                     <div class="numColorsRange">
-                        <span id="minColors"> 1 </span>
-                        <input type="range" min="1" max="5" value="5" class="rangeItem" id="numColors" name="numColors">
-                        <span id="maxColors"> 7 </span>
+                        <span id="minColors" class="sliderVal"> 2 </span>
+                        <input type="range" min="2" max="7" value="5" class="rangeItem" id="numColors" name="numColors">
+                        <span id="maxColors" class="sliderVal"> 7 </span>
                     </div>
                 </article>
             </section>
 
             <h3 class="formHeading"> Miscellaneous Styling </h3>
             <section class="formSection miscStyling">
-                <article class="numInput gap">             
-                    <label for="gridGap"> Grid Gap (px): </label>
-                    <input type="number" id="gridGap" name="gridGap" min="0" max="25" step="1" value="10">
+                <article class="numInput gap">           
+                    <div class="hGap">
+                        <label for="horizontalGap"> Vertical Gap (px): </label>
+                        <input type="number" id="horizontalGap" name="horizontalGap" min="0" max="25" step="1" value="10">
+                    </div>
+                    <div class="vGap">
+                        <label for="verticalGap"> Horizontal Gap (px): </label>
+                        <input type="number" id="verticalGap" name="verticalGap" min="0" max="25" step="1" value="10">
+                    </div>  
                 </article>  
                 <article class="numInput border">             
                     <div class="borderSize">
-                        <label for="bSize"> Border Size (px): </label>
+                        <label for="bSize"> Border Width (px): </label>
                         <input type="number" id="bSize" name="bSize" min="0" max="5" step="1" value="1">
                     </div>
+                    <div class="borderRadius">
+                        <label for="bRadius"> Border Radius (px): </label>
+                        <input type="number" id="bRadius" name="bRadius" min="0" max="15" step="1" value="0">
+                    </div>  
                     <div class="borderColor">
                         <label for="bColor"> Border Color: </label>
                         <input type="color" name="bColor" id="bColor" value="#000000">
@@ -152,13 +171,11 @@
                     <label for="addBoxShadow"> No </label>
                     <input type="radio" id="noShadow" name="addBoxShadow" value="no" checked>
                 </article>
-            </section> 
-        
-            <button type="submit" id="submitGridFormBtn"> Submit </button>
+            </section>         
         </form>
     </main>
     <section class="gridContainer">
-        
+        <!-- The grid is generated within this section -->
     </section>
 </body>
 </html>

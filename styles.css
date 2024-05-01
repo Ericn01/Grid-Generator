@@ -3,12 +3,14 @@ body {
     background-color: #f5f5f5; /* Soft background color for the whole page */
     font-family: "Raleway", sans-serif; /* Consistent font for readability */
     margin: 0px;
-    padding: 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start; /* Align items at the start to handle different heights gracefully */
+    padding: 20px;
 }
 
 #gridForm{
-    max-width: 85%;
-    min-width: 82.5%;
+    width: 85%;
     box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
     padding: 25px;
     border-radius: 7.5px;
@@ -18,23 +20,34 @@ body {
 h1{
     display: flex;
     justify-content: center;
-    font-size: 1.7rem;
+    font-size: 1.9rem;
+    font-weight: bolder;
 }
 
 .itemValue{
     margin-left: 10px;
 }
 
-.container {
+.formContainer {
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 25px;
-    width: 80%;
-    max-width: 800px;
-    margin: 20px auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2); /* Subtle shadow for depth */
-    background-color: lightgoldenrodyellow; /* Bright and clean background for the form */
+    max-width: min-content;
+}
+
+.gridContainer{
+    flex: 2;
+    display: grid; /* This will be dynamically adjusted in JavaScript */
+    margin-top: 20px;
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    border: 1px solid #ccc;
+    min-height: 100vh;
+    background-color: #fafafa;
+    justify-items: center;
+    align-self: center;
+    justify-content: space-evenly;
+    align-content: space-evenly;
 }
 
 h1, h3, h4 {
@@ -83,7 +96,7 @@ select {
 }
 
 /* Responsive Flex Layouts */
-.numInput, .itemDimensions, .colorSelection {
+.numInput, .widthRange, .heightRange, .colorSelection {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -96,6 +109,10 @@ select {
 .numInput input, .itemDimensions input, .colorSelection input {
     max-width: 150px;
     flex-basis: 68%; /* Less than 70% to accommodate margins */
+}
+
+.colorSelection{
+    margin-top: 10px;
 }
 
 /* Button Styling */
@@ -115,14 +132,31 @@ button:hover {
     background-color: #0056b3;
 }
 
-#submitGridFormBtn{
+#submitGridFormBtn {
     width: 30%;
     margin-top: 25px;
-    font-weight: bolder;
-    border-radius: 10px;
+    margin-bottom: 25px; 
+    padding: 12px 20px;  
+    font-weight: bold; 
+    font-size: 16px; 
+    color: white; 
+    border-radius: 10px; 
     text-shadow: 0px 0px 5px rgba(0,0,0,0.2);
-    background-color: rgb(30, 206, 30);
-    box-shadow: 2px 2px 3px rgba(0,0,0,0.1);
+    background-color: rgb(30, 206, 30);  
+    border: none; 
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1); 
+    cursor: pointer; 
+    transition: background-color 0.3s, transform 0.2s;  
+}
+
+#submitGridFormBtn:hover, #submitGridFormBtn:focus {
+    background-color: rgb(25, 175, 25);  /* Slightly darker on hover/focus for feedback */
+    outline: none;  /* Remove focus outline */
+}
+
+#submitGridFormBtn:active {
+    transform: translateY(1px);  /* Subtle push effect when clicked */
+    box-shadow: 1px 1px 2px rgba(0,0,0,0.2);  /* Deeper shadow to mimic pressing down */
 }
 
 /* Utility Classes */
@@ -131,18 +165,6 @@ button:hover {
     font-size: 0.9rem;
 }
 
-/* Grid Container for Visualization */
-.gridContainer {
-    display: none;
-    margin-top: 20px;
-    border: 1px solid #ccc;
-    min-height: 300px;
-    background-color: #fafafa;
-    justify-items: center;
-    align-items: center;
-    justify-content: space-evenly;
-    align-content: space-evenly;
-}
 
 .numColorsRange{
     padding-right: 10px;
@@ -164,7 +186,17 @@ button:hover {
     width: 100%;
 }
 
-.widthRange{
+.sliderVal{
+    font-size: 13px;
+}
+
+.numInput.gap{
+    display: flex;
+    border-bottom: 12.5px;
+    align-items: center;
+}
+
+.itemDimensions{
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
 }
