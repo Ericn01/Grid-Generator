@@ -46,4 +46,4 @@ const initForm = () => {
     createMiscStylingToggleButton();
 }
 
-export { initForm, toggleMinMaxDimensions, createMiscStylingToggleButton };
+export { initForm };

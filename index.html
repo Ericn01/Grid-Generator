@@ -16,12 +16,12 @@
             <h3 class="formHeading"> Rows & Columns Selection</h3>
             <section class="formSection gridDimensions"> 
                 <article class="numInput">             
-                    <label for="rowVal"> Rows: </label>
-                    <input type="number" id="rowVal" name="rowVal" min="1" max="25" step="1" value="5">
+                    <label for="numRows"> Rows: </label>
+                    <input type="number" id="numRows" name="numRows" min="1" max="25" step="1" value="5">
                 </article>  
                 <article class="numInput"> 
-                    <label for="colVal"> Columns: </label>
-                    <input type="number" id="colVal" name="colVal" min="1" max="25" step="1" value="5">   
+                    <label for="numCols"> Columns: </label>
+                    <input type="number" id="numCols" name="numCols" min="1" max="25" step="1" value="5">   
                 </article>        
             </section>
 
@@ -38,10 +38,10 @@
                         <div class="equalDimContainer">
                             <h4>Width Settings</h4>
                             <div class="itemValue uniform">
-                                <label for="gridItemWidth">Grid Item Width</label>
+                                <label for="itemWidth">Grid Item Width</label>
                                 <div class="flexSlider">
                                     <span class="sliderVal minWidth">10px</span>
-                                    <input type="range" min="10" max="50" id="gridItemWidth" class="itemWidth" value="25" name="gridItemWidth">
+                                    <input type="range" min="10" max="50" id="itemWidth" class="itemWidth" value="25" name="itemWidth">
                                     <span class="sliderVal maxWidth">50px</span>
                                 </div>
                             </div>
@@ -49,10 +49,10 @@
                         <div class="equalDimContainer">
                             <h4>Height Settings</h4>
                             <div class="itemValue uniform">
-                                <label for="gridItemHeight">Grid Item Height</label>
+                                <label for="itemHeight">Grid Item Height</label>
                                 <div class="flexSlider">
                                     <span class="sliderVal minHeight">1px</span>
-                                    <input type="range" min="1" max="50" id="gridItemHeight" class="itemHeight" value="25" name="gridItemHeight">
+                                    <input type="range" min="1" max="50" id="itemHeight" class="itemHeight" value="25" name="itemHeight">
                                     <span class="sliderVal maxHeight">50px</span>
                                 </div>
                             </div>
@@ -151,16 +151,16 @@
                 </article>  
                 <article class="numInput border">             
                     <div class="borderSize">
-                        <label for="bSize"> Border Width (px): </label>
-                        <input type="number" id="bSize" name="bSize" min="0" max="5" step="1" value="1">
+                        <label for="borderWidth"> Border Width (px): </label>
+                        <input type="number" id="borderWidth" name="borderWidth" min="0" max="5" step="1" value="1">
                     </div>
                     <div class="borderRadius">
-                        <label for="bRadius"> Border Radius (px): </label>
-                        <input type="number" id="bRadius" name="bRadius" min="0" max="15" step="1" value="0">
+                        <label for="borderRadius"> Border Radius (px): </label>
+                        <input type="number" id="borderRadius" name="borderRadius" min="0" max="15" step="1" value="0">
                     </div>  
                     <div class="borderColor">
-                        <label for="bColor"> Border Color: </label>
-                        <input type="color" name="bColor" id="bColor" value="#000000">
+                        <label for="borderColor"> Border Color: </label>
+                        <input type="color" name="borderColor" id="borderColor" value="#000000">
                         <span class="colorHex"> </span>
                     </div>
                 </article>  
@@ -177,5 +177,6 @@
     <section class="gridContainer">
         <!-- The grid is generated within this section -->
     </section>
+
 </body>
 </html>
